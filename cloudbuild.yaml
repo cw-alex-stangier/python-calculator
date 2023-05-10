@@ -1,3 +1,12 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'europe-west1-docker.pkg.dev/cw-academy-sandbox-alex/repo/calcpy', '.' ]
+  id: build_docker_image
+  args: [ 'build', '-t', 'europe-west1-docker.pkg.dev/cw-academy-sandbox-alex/repo/calcpy:$SHORT_SHA', '.' ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: push_docker_image
+  args: ['push', 'europe-west1-docker.pkg.dev/cw-academy-sandbox-alex/repo/calcpy:$SHORT_SHA']
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  id: gcloud
+  args: ['run', 'deploy', 'calcpy', '--image', 'europe-west1-docker.pkg.dev/cw-academy-sandbox-alex/repo/calcpy:$SHORT_SHA', '--region', 'europe-west1'] 
