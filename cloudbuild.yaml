@@ -8,5 +8,5 @@ steps:
   args: ['push', 'europe-west1-docker.pkg.dev/cw-academy-sandbox-alex/repo/calcpy:$SHORT_SHA']
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  id: gcloud
+  id: deploy to gcloud
   args: ['run', 'deploy', 'calcpy', '--image', 'europe-west1-docker.pkg.dev/$PROJECT_ID/repo/calcpy:$SHORT_SHA', '--region', 'europe-west1']
