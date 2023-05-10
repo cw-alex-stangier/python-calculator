@@ -17,3 +17,7 @@ async def sum(operands: Payload):
 async def diff(operands: Payload):
     return {"result": operands.operand1 - operands.operand2}
 
+##product function
+@app.post("/prod")
+async def prod(operands: Payload):
+    return {"result": operands.operand1 / operands.operand2}
