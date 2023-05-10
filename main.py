@@ -12,12 +12,17 @@ class Payload(BaseModel):
 async def sum(operands: Payload):
     return {"result": operands.operand1 + operands.operand2}
 
-#diff function
+#difference function
 @app.post("/diff")
 async def diff(operands: Payload):
     return {"result": operands.operand1 - operands.operand2}
 
-##product function
+#division function
+@app.post("/div")
+async def div(operands: Payload):
+    return {"result": operands.operand1 / operands.operand2}
+
+#product function
 @app.post("/prod")
 async def prod(operands: Payload):
-    return {"result": operands.operand1 / operands.operand2}
+    return {"result": operands.operand1 * operands.operand2}
