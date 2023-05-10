@@ -20,7 +20,7 @@ async def diff(operands: Payload):
 #division function
 @app.post("/div")
 async def div(operands: Payload):
-    return {"result": operands.operand1 / operands.operand2}
+    return {"result": (operands.operand1 / operands.operand2)}
 
 #product function
 @app.post("/prod")
