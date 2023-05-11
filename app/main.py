@@ -18,7 +18,6 @@ class PayloadList(BaseModel):
 
 @app.get("/")
 async def default(response_class=HTMLResponse):
-    #return {"available options": {"sum", "diff", "div", "prod", "sumList", "fac"}}
     htmlcontent = """
             <html>
                 <head>
@@ -27,7 +26,7 @@ async def default(response_class=HTMLResponse):
                 <body>
                     <h1> Calculator </h1>
                     <h3> Options: </h3>
-                    <ul> <li>POST</li>
+                    <ul> <li><h4>POST</h4></li>
                         <ul> 
                             <li>/sum -> sum up to 2 literals</li>
                             <li>/diff -> get the difference between two literals</li>
