@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from typing import List
 import math
 from fastapi.responses import HTMLResponse
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
@@ -15,6 +17,10 @@ class Payload(BaseModel):
 
 class PayloadList(BaseModel):
     items: list[int]
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    return PlainTextResponse(str(f"Request contains non valid types. Only integers can be consumed."), status_code=400)
 
 @app.get("/")
 async def default(response_class=HTMLResponse):
