@@ -1,8 +1,12 @@
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 from typing import List
+import math
 
 app = FastAPI()
+
+class PayloadSingle(BaseModel):
+    operand: int
 
 class Payload(BaseModel):
     operand1: int
@@ -23,6 +27,11 @@ async def sum(operands: PayloadList):
     for x in operands.items:
         val += x
     return {"result": val}
+
+#calc factorial
+@app.post("/fac")
+async def fac(operand: PayloadSingle):
+    return {"result": math.factorial(operand.operand)}
 
 
 #difference function
