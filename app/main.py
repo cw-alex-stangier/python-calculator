@@ -13,11 +13,26 @@ class Payload(BaseModel):
     operand1: int
     operand2: int
 
+class X():
+    x: str
+
+class Y():
+    y: str
+
 class PayloadList(BaseModel):
     items: list[int]
 
+errorresponse = """
+                <html>
+                    <body>
+                        <h3> Cannot procees any datatypes besides int in request. </h3>
+                    </body>
+                </html>
+
+"""
+
 @app.get("/")
-async def default(response_class=HTMLResponse):
+async def default():
     htmlcontent = """
             <html>
                 <head>
@@ -41,36 +56,61 @@ async def default(response_class=HTMLResponse):
     """
     return HTMLResponse(content=htmlcontent, status_code=200)
 
+
 #Sum function 
 @app.post("/sum")
 async def sum(operands: Payload):
-    return {"type": operands.operand1 + operands.operand2}
+    try:
+        calc = operands.operand1 + operands.operand
+        return {"type": calc}
+    except TypeError:
+        return HTMLResponse(content=errorresponse, status_code=500)
+    
 
 #sum up all items in list
 @app.post("/sumList")
 async def sum(operands: PayloadList):
-    val = 0
-    for x in operands.items:
-        val += x
-    return {"result": val}
+    try:
+        val = 0
+        for x in operands.items:
+            val += x
+        return {"result": val}
+    except TypeError:
+        return HTMLResponse(content=errorresponse, status_code=500)
 
 #calc factorial
 @app.post("/fac")
 async def fac(operand: PayloadSingle):
-    return {"result": math.factorial(operand.operand)}
-
+    try:
+        calc = math.factorial(operand.operand)
+        return {"result": calc}
+    except TypeError:
+        return HTMLResponse(content=errorresponse, status_code=500)
 
 #difference function
 @app.post("/diff")
-async def diff(operands: Payload): 
-    return {"result": operands.operand1 - operands.operand2}
+async def diff(operands: Payload):
+    try: 
+        calc = operands.operand1 - operands.operand2
+        return {"result": calc}
+    except TypeError:
+        return HTMLResponse(content=errorresponse, status_code=500)
 
 #division function
 @app.post("/div")
 async def div(operands: Payload):
-    return {"result": (operands.operand1 / operands.operand2)}
+    try:
+        calc = operands.operand1 / operands.operand2
+        return {"result": calc}
+    except TypeError:
+        return HTMLResponse(content=errorresponse, status_code=500)
 
 #product function
 @app.post("/prod")
 async def prod(operands: Payload):
-    return {"result": operands.operand1 * operands.operand2}
+    try:
+        calc = operands.operand1 * operands.operand2
+        return {"result": calc}
+    except TypeError:
+        return HTMLResponse(content=errorresponse, status_code=500)
+
