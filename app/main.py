@@ -15,7 +15,7 @@ class Payload(BaseModel):
 class PayloadList(BaseModel):
     items: list[int]
 
-@app.get("")
+@app.get("/")
 async def default():
     return {"options": {"sum", "diff", "div", "prod", "sumList", "fac"}}
 
