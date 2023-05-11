@@ -30,7 +30,7 @@ errorresponse = """
                 </html>
 
 """
-
+ 
 @app.get("/")
 async def default():
     htmlcontent = """
