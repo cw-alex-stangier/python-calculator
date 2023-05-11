@@ -28,7 +28,7 @@ async def default(response_class=HTMLResponse):
     htmlcontent = """
             <html>
                 <head>
-                    <title>Calcpy TEST</title>
+                    <title>Calcpy</title>
                 </head>
                 <body>
                     <h1> Calculator </h1>
