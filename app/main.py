@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from pydantic import BaseModel
 from typing import List
 
@@ -8,16 +8,22 @@ class Payload(BaseModel):
     operand1: int
     operand2: int
 
-class BigPayload(BaseModel):
-    operandslist: List[int]
+class PayloadList(BaseModel):
+    items: list[int]
 
 #Sum function 
 @app.post("/sum")
-async def sum(operands: Payload | BigPayload):
-    if operands.isinstance(BigPayload):
-        return sum(operands.operandslist)
-    else:
-        return {"result": operands.operand1 + operands.operand2}
+async def sum(operands: Payload):
+    return {"type": operands.operand1 + operands.operand2}
+
+#sum up all items in list
+@app.post("/sumList")
+async def sum(operands: PayloadList):
+    val = 0
+    for x in operands.items:
+        val += x
+    return {"result": val}
+
 
 #difference function
 @app.post("/diff")
@@ -33,5 +39,3 @@ async def div(operands: Payload):
 @app.post("/prod")
 async def prod(operands: Payload):
     return {"result": operands.operand1 * operands.operand2}
-
-#dummy line
