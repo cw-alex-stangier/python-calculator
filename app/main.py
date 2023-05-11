@@ -41,7 +41,7 @@ async def default(response_class=HTMLResponse):
             </html>
     """
     return HTMLResponse(content=htmlcontent, status_code=200)
-
+ 
 #Sum function 
 @app.post("/sum")
 async def sum(operands: Payload):
