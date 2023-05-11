@@ -29,12 +29,12 @@ async def default(response_class=HTMLResponse):
                     <h3> Options: </h3>
                     <ul> <li>POST</li>
                         <ul> 
-                            <li>/sum</li>
-                            <li>/diff</li>
-                            <li>/div</li>
-                            <li>/prod</li>
-                            <li>/sumlist</li>
-                            <li>/fac</li>
+                            <li>/sum -> sum up to 2 literals</li>
+                            <li>/diff -> get the difference between two literals</li>
+                            <li>/div -> divide literal 1 by literal 2</li>
+                            <li>/prod -> get the product of two literals</li>
+                            <li>/sumlist -> get the sum of a list of int literals</li>
+                            <li>/fac -> calculate the factorial of a literal</li>
                         </ul>
                     </ul>
                 </body>
