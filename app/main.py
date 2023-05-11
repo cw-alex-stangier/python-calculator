@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from typing import List
 import math
 from fastapi.responses import HTMLResponse
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import PlainTextResponse
 
 app = FastAPI()
 
@@ -22,15 +24,10 @@ class Y():
 class PayloadList(BaseModel):
     items: list[int]
 
-errorresponse = """
-                <html>
-                    <body>
-                        <h3> Cannot procees any datatypes besides int in request. </h3>
-                    </body>
-                </html>
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    return PlainTextResponse(str(f"Request contains non valid types. Only integers can be consumed."), status_code=400)
 
-"""
-  
 @app.get("/")
 async def default():
     htmlcontent = """
@@ -55,7 +52,6 @@ async def default():
             </html>
     """
     return HTMLResponse(content=htmlcontent, status_code=200)
-
 
 #Sum function 
 @app.post("/sum")
