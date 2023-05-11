@@ -2,6 +2,7 @@ from fastapi import FastAPI, Query
 from pydantic import BaseModel
 from typing import List
 import math
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -16,8 +17,30 @@ class PayloadList(BaseModel):
     items: list[int]
 
 @app.get("/")
-async def default():
-    return {"options": {"sum", "diff", "div", "prod", "sumList", "fac"}}
+async def default(response_class=HTMLResponse):
+    #return {"available options": {"sum", "diff", "div", "prod", "sumList", "fac"}}
+    htmlcontent = """
+            <html>
+                <head>
+                    <title>Calcpy</title>
+                </head>
+                <body>
+                    <h1> Calculator </h1>
+                    <h3> Options: </h3>
+                    <ul> <li>POST</li>
+                        <ul> 
+                            <li>/sum</li>
+                            <li>/diff</li>
+                            <li>/div</li>
+                            <li>/prod</li>
+                            <li>/sumlist</li>
+                            <li>/fac</li>
+                        </ul>
+                    </ul>
+                </body>
+            </html>
+    """
+    return HTMLResponse(content=htmlcontent, status_code=200)
 
 #Sum function 
 @app.post("/sum")
