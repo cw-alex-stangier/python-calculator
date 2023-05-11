@@ -11,7 +11,7 @@ class PayloadSingle(BaseModel):
 
 class Payload(BaseModel):
     operand1: int
-    operand2: int
+    operand2: int 
 
 class X():
     x: str
