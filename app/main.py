@@ -14,7 +14,7 @@ class BigPayload(BaseModel):
 #Sum function 
 @app.post("/sum")
 async def sum(operands: Payload | BigPayload):
-    if operands is BigPayload:
+    if operands.isinstance(BigPayload):
         return sum(operands.operandslist)
     else:
         return {"result": operands.operand1 + operands.operand2}
