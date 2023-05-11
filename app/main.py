@@ -56,59 +56,41 @@ async def default():
 #Sum function 
 @app.post("/sum")
 async def sum(operands: Payload):
-    try:
-        calc = operands.operand1 + operands.operand
-        return {"type": calc}
-    except TypeError:
-        return HTMLResponse(content=errorresponse, status_code=500)
-    
+    calc = operands.operand1 + operands.operand
+    return {"type": calc}
 
 #sum up all items in list
 @app.post("/sumList")
 async def sum(operands: PayloadList):
-    try:
-        val = 0
-        for x in operands.items:
-            val += x
-        return {"result": val}
-    except TypeError:
-        return HTMLResponse(content=errorresponse, status_code=500)
+    val = 0
+    for x in operands.items:
+        val += x
+    return {"result": val}
+
 
 #calc factorial
 @app.post("/fac")
 async def fac(operand: PayloadSingle):
-    try:
-        calc = math.factorial(operand.operand)
-        return {"result": calc}
-    except TypeError:
-        return HTMLResponse(content=errorresponse, status_code=500)
+    calc = math.factorial(operand.operand)
+    return {"result": calc}
 
 #difference function
 @app.post("/diff")
 async def diff(operands: Payload):
-    try: 
-        calc = operands.operand1 - operands.operand2
-        return {"result": calc}
-    except TypeError:
-        return HTMLResponse(content=errorresponse, status_code=500)
+    calc = operands.operand1 - operands.operand2
+    return {"result": calc}
 
 #division function
 @app.post("/div")
 async def div(operands: Payload):
-    try:
-        calc = operands.operand1 / operands.operand2
-        return {"result": calc}
-    except TypeError:
-        return HTMLResponse(content=errorresponse, status_code=500)
+    calc = operands.operand1 / operands.operand2
+    return {"result": calc}
 
 #product function
 @app.post("/prod")
 async def prod(operands: Payload):
-    try:
-        calc = operands.operand1 * operands.operand2
-        return {"result": calc}
-    except TypeError:
-        return HTMLResponse(content=errorresponse, status_code=500)
+    calc = operands.operand1 * operands.operand2
+    return {"result": calc}
 
 
 
