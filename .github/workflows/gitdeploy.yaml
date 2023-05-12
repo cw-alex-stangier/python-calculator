@@ -29,8 +29,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: europe-west1-docker.pkg.dev/cw-academy-sandbox-alex/repo/calcpy:latest
+          tags: europe-west1-docker.pkg.dev/cw-academy-sandbox-alex/github-actions-repo/calcpy:latest
       
       - name: 'Deploy Container to CloudRun'
-        run: 'gcloud run deploy calcpy --image europe-west1-docker.pkg.dev/$PROJECT_ID/repo/calcpy:latest --region europe-west1'
+        run: 'gcloud run deploy calcpy --image europe-west1-docker.pkg.dev/$PROJECT_ID/github-actions-repo/calcpy:latest --region europe-west1'
 
