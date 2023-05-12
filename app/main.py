@@ -36,7 +36,7 @@ async def default():
                     <title>Calcpy</title>
                 </head>
                 <body>
-                    <h1> Calculator </h1>
+                    <h1> Calculator Dev </h1>
                     <h3> Options: </h3>
                     <ul> <li><h4>POST</h4></li>
                         <ul> 
