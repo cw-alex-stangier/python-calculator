@@ -21,11 +21,9 @@ jobs:
       - name: 'setup artifact registry connection'
         run: 'gcloud auth configure-docker europe-west1-docker.pkg.dev'
 
-      -
-        name: Set up Docker Buildx
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      -
-        name: Build and push
+      - name: Build and push
         uses: docker/build-push-action@v4
         with:
           push: true
